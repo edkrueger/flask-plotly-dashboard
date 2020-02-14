@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+    <body>
+        <div id="bargraph">
+            <script>
+                Plotly.plot('bargraph', {{ plot_json | safe }}, {});
+            </script>
+        </div>
+    </body>
+</html>
