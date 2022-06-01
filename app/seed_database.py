@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from database import engine
+from .database import engine
 
 
 def make_data():

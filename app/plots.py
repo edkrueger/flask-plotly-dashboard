@@ -12,8 +12,6 @@ def _fig_to_json(fig):
 
 def make_plot_data(df):
 
-    print(df)
-
     fig = px.line(df, x="datetime", y=["value", "other_value"], **styling_kwargs)
 
     return _fig_to_json(fig)

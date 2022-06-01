@@ -1,7 +1,7 @@
 from ast import parse
 import pandas as pd
 
-from database import engine
+from .database import engine
 
 
 def get_data():
