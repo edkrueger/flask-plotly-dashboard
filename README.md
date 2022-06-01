@@ -12,7 +12,8 @@ To provision a Postgres database some options are:
 
 ## Set Environmental Variables
 Pipenv will automatically set environmental variables from `.env`. We'll also use `.env` for deployment.  
-* Navigate to the top level of the repo and run `cp demo.env .env` and modify `.env` to have the correct values
+* Navigate to the top level of the repo and run `cp demo.env .env` and modify `.env` to have the correct values.
+* Navigate to the top level of the repo and run `cp demo.env.yaml .env.yaml` and modify `.env.yaml` to have the correct values.
 
 ## Run the App Locally
 Make sure that version of Python that is compatible with the version specified in `Pipfile` and Pipenv are installed.  
@@ -57,6 +58,7 @@ export APP_NAME=$CONTAINER_NAME
 gcloud run deploy $APP_NAME --image $GCR_TAG \
    --platform managed \
    --allow-unauthenticated \
-   --env-vars-file=env.yaml \
+   --env-vars-file=.env.yaml \
+   --region us-west1 \
    --port 80
 ```
