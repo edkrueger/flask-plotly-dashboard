@@ -18,3 +18,16 @@ Pipenv will automatically set environmental variables from `.env`. We'll also us
 Make sure that version of Python that is compatible with the version specified in `Pipfile` and Pipenv are installed.  
 * To install the Python dependencies, navigate to the top level of the repo and run: `pipenv install`  
 * To run the app run: `pipenv run python run_debug.py`  
+
+## Run the App With Docker Locally
+* Build the app with Docker: `docker build . -t flask-plotly-dashboard`  
+
+Launch and kill in the foreground:
+* Run the app with: `docker run -p 80:80 --env-file .env flask-plotly-dashboard`
+* Kill the app by pressing ctrl+d or ctrl+c
+
+Launch and kill in the background:
+* Run the app with : `CONTAINER_ID=$(docker run -d -p 80:80 --env-file .env -d flask-plotly-dashboard)`
+* Kill the app with `docker kill $CONTAINER_ID`
+
+The app will be available at [http://0.0.0.0:80](http://0.0.0.0:80) and [http://127.0.0.1:80](http://127.0.0.1:80)
