@@ -31,3 +31,32 @@ Launch and kill in the background:
 * Kill the app with `docker kill $CONTAINER_ID`
 
 The app will be available at [http://0.0.0.0:80](http://0.0.0.0:80) and [http://127.0.0.1:80](http://127.0.0.1:80)
+
+## Deploy to GCP
+
+### Build and Deploy to GCR
+You'll need to set you gcloud CLI to the project you want and deploy to GCP Cloud Build. This will upload the files, build the container remotely and upload it to GCR.  
+
+To deploy to GCP Cloud Build:
+    * To select you account and project, run `gcloud init`  
+    * Set a default region  
+    * Run the bash block below
+
+```bash 
+export CONTAINER_NAME=flask-plotly-dashboard
+export PROJECT=$(gcloud config get-value project)
+export GCR_TAG=gcr.io/$PROJECT/$CONTAINER_NAME
+echo $GCR_TAG
+gcloud builds submit --tag $GCR_TAG
+```
+
+### Deploy to GCP Cloud Run
+
+```bash
+export APP_NAME=$CONTAINER_NAME
+gcloud run deploy $APP_NAME --image $GCR_TAG \
+   --platform managed \
+   --allow-unauthenticated \
+   --env-vars-file=env.yaml \
+   --port 80
+```
